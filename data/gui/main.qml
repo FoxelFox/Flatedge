@@ -11,9 +11,4 @@ Rectangle {
             Qt.quit();
         }
     }
-
-    Text {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
-    }
 }
