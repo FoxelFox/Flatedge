@@ -3,7 +3,9 @@ TEMPLATE = app
 QT += qml quick
 
 SOURCES += \
-    src/main.cpp
+    src/main.cpp \
+    src/gui/window.cpp \
+    src/gui/console.cpp
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -15,3 +17,7 @@ OTHER_FILES +=
 
 RESOURCES += \
     data/resource.qrc
+
+HEADERS += \
+    src/gui/window.h \
+    src/gui/console.h

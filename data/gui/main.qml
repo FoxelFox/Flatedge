@@ -1,14 +1,17 @@
 import QtQuick 2.2
+import QtQuick.Controls 1.0
+import Flatedge 1.0
 
-Rectangle {
-    visible: true
-    width: 360
-    height: 360
+Window {
+    width: 1280
+    height: 720
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit();
-        }
+    Console {
+
+    }
+
+    Button {
+        text: "simulate"
+
     }
 }
