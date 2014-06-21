@@ -3,6 +3,8 @@
 
 #include <QQuickItem>
 
+class QOpenGLContext;
+
 class Window : public QQuickItem
 {
     Q_OBJECT
@@ -13,9 +15,13 @@ signals:
 
 public slots:
     void draw();
+    void init();
 
 private slots:
     void windowChanged(QQuickWindow *win);
+
+private:
+    QOpenGLContext *m_qmlContext;
 };
 
 #endif // WINDOW_H
