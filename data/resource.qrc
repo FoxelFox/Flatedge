@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/data" lang="qml">
+    <qresource lang="qml" prefix="/data">
         <file>gui/main.qml</file>
+        <file>gui/DevConsole.qml</file>
     </qresource>
 </RCC>

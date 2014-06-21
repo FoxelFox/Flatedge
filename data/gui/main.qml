@@ -6,12 +6,5 @@ Window {
     width: 1280
     height: 720
 
-    Console {
-
-    }
-
-    Button {
-        text: "simulate"
-
-    }
+    DevConsole{}
 }

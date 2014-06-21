@@ -13,7 +13,9 @@ signals:
 
 public slots:
     void draw();
-    void resize(QQuickWindow *window);
+
+private slots:
+    void windowChanged(QQuickWindow *win);
 };
 
 #endif // WINDOW_H
