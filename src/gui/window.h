@@ -4,6 +4,7 @@
 #include <QQuickItem>
 
 class QOpenGLContext;
+class Engine;
 
 class Window : public QQuickItem
 {
@@ -22,6 +23,7 @@ private slots:
 
 private:
     QOpenGLContext *m_qmlContext;
+    Engine *m_engine;
 };
 
 #endif // WINDOW_H
