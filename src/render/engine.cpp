@@ -4,17 +4,17 @@
 Engine::Engine(QObject *parent)
 {
     m_parent = parent;
+    c43.initializeOpenGLFunctions();
 }
 
 void Engine::Draw()
 {
-    glClearColor(0.0,0.75,1.0,0.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    c43.glClearColor(0.0,0.75,1.0,0.0);
+    c43.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Engine::Update()
 {
-
 }
 
 QOpenGLShaderProgram *Engine::GetShader(QString name)

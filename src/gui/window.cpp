@@ -11,10 +11,7 @@
 Window::Window(QQuickItem *parent) :
     QQuickItem(parent)
 {
-
-
     connect(this, SIGNAL(windowChanged(QQuickWindow*)), this, SLOT(windowChanged(QQuickWindow*)));
-
 }
 
 void Window::draw()

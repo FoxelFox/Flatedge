@@ -2,9 +2,11 @@
 #define ENGINE_H
 
 #include <QMap>
+#include <QOpenGLFunctions_4_3_Core>
 
 class QOpenGLShaderProgram;
 class QObject;
+
 
 class Engine
 {
@@ -15,6 +17,7 @@ public:
     QOpenGLShaderProgram* GetShader(QString name);
 
 private:
+    QOpenGLFunctions_4_3_Core c43;
     QMap<QString, QOpenGLShaderProgram*> m_shaders;
     QObject *m_parent;
 };
