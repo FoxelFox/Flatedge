@@ -15,6 +15,7 @@ void Engine::Draw()
 
 void Engine::Update()
 {
+
 }
 
 QOpenGLShaderProgram *Engine::GetShader(QString name)
