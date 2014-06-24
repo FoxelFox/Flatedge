@@ -4,7 +4,6 @@
 
 RenderTarget::RenderTarget(QVector<QOpenGLTexture*> textureBuffers)
 {
-
     m_textureBuffers = textureBuffers;
     m_frameBuffer = 0;
     m_depthBuffer = 0;
