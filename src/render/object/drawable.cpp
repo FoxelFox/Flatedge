@@ -50,7 +50,7 @@ vector<unsigned char> Drawable::makeNewID(){
     return v;
 }
 
-void Drawable::Draw(QMatrix4x4 *transform)
+void Drawable::draw(QMatrix4x4 &transform)
 {
     // bind my shader to be used
     m_shader->bind();
@@ -59,7 +59,7 @@ void Drawable::Draw(QMatrix4x4 *transform)
     m_shader->setUniformValue("color", m_color);
 
     // calculate and set uniform variable modelMatrix
-    m_SceneMatrix = *transform * m_transMatrix;
+    m_SceneMatrix = transform * m_transMatrix;
     m_shader->setUniformValue("modelMatrix", m_modelMatrix);
     m_shader->setUniformValue("sceneMatrix",m_SceneMatrix);
     m_shader->setUniformValue("id",QVector4D((float)m_id[0]/255,(float)m_id[1]/255,(float)m_id[2]/255,(float)m_id[3]/255));
@@ -71,7 +71,7 @@ void Drawable::Draw(QMatrix4x4 *transform)
 
     // draw my childs
     for(unsigned int i = 0; i < m_childList.size(); ++i) {
-        m_childList[i]->Draw(&m_SceneMatrix);
+        m_childList[i]->draw(m_SceneMatrix);
     }
 }
 

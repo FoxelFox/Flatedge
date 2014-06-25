@@ -30,7 +30,7 @@ public:
     /// \brief Draw the Drawable
     /// \param transform The SceneGraph transformation
     ///
-    void Draw(QMatrix4x4* transform);
+    void draw(QMatrix4x4 &transform);
 
     ///
     /// \brief Complete the Model
