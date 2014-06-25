@@ -5,15 +5,13 @@
 Engine::Engine(QObject *parent)
 {
     m_parent = parent;
-    c43.initializeOpenGLFunctions();
-
-
+    initializeOpenGLFunctions();
 }
 
 void Engine::Draw()
 {
-    c43.glClearColor(0.0,0.75,1.0,0.0);
-    c43.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0,0.75,1.0,0.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Engine::Update()

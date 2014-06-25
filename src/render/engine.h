@@ -8,7 +8,7 @@ class QOpenGLShaderProgram;
 class QObject;
 
 
-class Engine
+class Engine : protected QOpenGLFunctions_4_3_Core
 {
 public:
     Engine(QObject *parent);
@@ -25,7 +25,6 @@ public:
 
 
 private:
-    QOpenGLFunctions_4_3_Core c43;
     QMap<QString, QOpenGLShaderProgram*> m_shaders;
     QObject *m_parent;
 };
