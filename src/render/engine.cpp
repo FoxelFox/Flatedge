@@ -1,10 +1,13 @@
 #include "engine.h"
 #include <QOpenGLShaderProgram>
 
+
 Engine::Engine(QObject *parent)
 {
     m_parent = parent;
     c43.initializeOpenGLFunctions();
+
+
 }
 
 void Engine::Draw()

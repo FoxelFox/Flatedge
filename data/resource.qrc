@@ -1,6 +1,10 @@
 <RCC>
-    <qresource lang="qml" prefix="/data">
+    <qresource lang="qml" prefix="/gui">
         <file>gui/main.qml</file>
         <file>gui/DevConsole.qml</file>
+    </qresource>
+    <qresource lang="GLSL" prefix="/shader">
+        <file>shader/basic.vert</file>
+        <file>shader/basic.frag</file>
     </qresource>
 </RCC>
