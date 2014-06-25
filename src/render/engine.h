@@ -14,7 +14,15 @@ public:
     Engine(QObject *parent);
     void Draw();
     void Update();
-    QOpenGLShaderProgram* GetShader(QString name);
+
+    QOpenGLShaderProgram *getShader(QString name);
+
+    /**
+     * @brief Returns the QML OpenGLContext
+     * @return OpenGLContext
+     */
+    QObject *getContext();
+
 
 private:
     QOpenGLFunctions_4_3_Core c43;

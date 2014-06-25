@@ -19,9 +19,12 @@ signals:
 
 public slots:
     void addLinetoLog(QString line);
+    static void sWrite(QString line);
+    static void sWriteError(QString line);
 
 private:
     QString m_text;
+    static Console *s_console;
 };
 
 #endif // CONSOLE_H

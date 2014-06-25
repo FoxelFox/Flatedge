@@ -21,7 +21,7 @@ void Engine::Update()
 
 }
 
-QOpenGLShaderProgram *Engine::GetShader(QString name)
+QOpenGLShaderProgram *Engine::getShader(QString name)
 {
     QOpenGLShaderProgram* shader = m_shaders[name];
 
@@ -34,4 +34,9 @@ QOpenGLShaderProgram *Engine::GetShader(QString name)
         m_shaders[name] = shader;
     }
     return shader;
+}
+
+QObject *Engine::getContext()
+{
+    return m_parent;
 }
