@@ -11,7 +11,8 @@ SOURCES += \
     src/render/object/drawable.cpp \
     src/render/object/factory.cpp \
     src/render/object/mesh.cpp \
-    src/render/scene.cpp
+    src/render/scene.cpp \
+    src/render/camera.cpp
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -32,4 +33,5 @@ HEADERS += \
     src/render/object/drawable.h \
     src/render/object/factory.h \
     src/render/object/mesh.h \
-    src/render/scene.h
+    src/render/scene.h \
+    src/render/camera.h
