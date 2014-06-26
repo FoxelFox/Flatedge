@@ -3,10 +3,14 @@
 
 #include <QMatrix4x4>
 
-class Camera
+#include <QOpenGLFunctions_4_3_Core>
+
+class Camera : protected QOpenGLFunctions_4_3_Core
 {
 public:
     Camera();
+
+    void toGPU();
 
     QMatrix4x4 view() { return m_view; }
 
