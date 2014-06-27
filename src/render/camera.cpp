@@ -8,5 +8,5 @@ Camera::Camera()
 
 void Camera::toGPU()
 {
-    // todo uniform upload
+
 }
