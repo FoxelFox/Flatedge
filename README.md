@@ -1,8 +1,9 @@
 Flatedge
 ========
 
-<h1>An QtQuick 2.2 + OpenGL 4.4 + GLSL 440 Engine Demo</h1>
+<h2>An QtQuick 2.2 + OpenGL 4.4 + GLSL 440 Engine Demo</h2>
 
-Compile it in QtCreator or just use QMake.
+<h3>Compile</h3>
+Use QtCreator or just run QMake.
 
 
