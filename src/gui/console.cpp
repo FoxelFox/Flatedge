@@ -1,4 +1,5 @@
 #include "console.h"
+#include <iostream>
 
 
 Console *Console::s_console = 0;
@@ -38,5 +39,6 @@ void Console::sWriteError(QString line)
 {
     // TODO: write with red color
     s_console->m_text = s_console->m_text + "\n" + line;
+    std::cout << line.toStdString() << std::endl;
     emit s_console->textChanged();
 }

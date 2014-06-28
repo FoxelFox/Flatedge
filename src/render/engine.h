@@ -2,7 +2,11 @@
 #define ENGINE_H
 
 #include <QMap>
+#include <QList>
 #include <QOpenGLFunctions_4_3_Core>
+
+#include "src/render/object/factory.h"
+#include "src/render/scene.h"
 
 class QOpenGLShaderProgram;
 class QObject;
@@ -25,6 +29,8 @@ public:
 
 
 private:
+    Factory *m_factory;
+    QList<Scene*> m_scenes;
     QMap<QString, QOpenGLShaderProgram*> m_shaders;
     QObject *m_parent;
 };
