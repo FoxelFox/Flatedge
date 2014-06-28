@@ -1,4 +1,12 @@
-layout(location = 0) in vec4 position;
+#version 440
+
+layout(location = 0) in vec4 mPosition;
+layout(location = 1) in vec4 mColor;
+layout(location = 2) in vec4 mNormal;
+
+uniform vec4 uColor;
+
+layout(location = 0) out vec4 vColor;
 
 layout(std140) uniform GlobalMatrices
 {
@@ -8,5 +16,6 @@ layout(std140) uniform GlobalMatrices
 
 void main(void)
 {
-    gl_Position =  mat_view * position;
+    gl_Position = mPosition;
+    vColor = mColor;
 }

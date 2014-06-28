@@ -56,15 +56,11 @@ void Drawable::draw(QMatrix4x4 &transform)
     m_shader->bind();
 
     // set my uniform color
-    m_shader->setUniformValue("color", m_color);
+    m_shader->setUniformValue("uColor", m_color);
 
     // calculate and set uniform variable modelMatrix
     m_SceneMatrix = transform * m_transMatrix;
-    m_shader->setUniformValue("modelMatrix", m_modelMatrix);
-    m_shader->setUniformValue("sceneMatrix",m_SceneMatrix);
-    m_shader->setUniformValue("id",QVector4D((float)m_id[0]/255,(float)m_id[1]/255,(float)m_id[2]/255,(float)m_id[3]/255));
-    if(m_isSelected) m_shader->setUniformValue("isSelected", 1.0f);
-    else m_shader->setUniformValue("isSelected", 0.0f);
+
     // draw myself
     m_mesh->Draw();
     m_shader->release();

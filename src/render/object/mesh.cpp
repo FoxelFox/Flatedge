@@ -34,7 +34,7 @@ void Mesh::BuildVAO(QObject *context, QOpenGLShaderProgram *shader)
         m_positionBuffer->bind();
 
         // get the in_position bind index from shader and enable it
-        int in_position = shader->attributeLocation("in_position");
+        int in_position = shader->attributeLocation("mPosition");
         shader->enableAttributeArray(in_position);
 
         // tell opengl how to use the positionBuffer structure
@@ -51,7 +51,7 @@ void Mesh::BuildVAO(QObject *context, QOpenGLShaderProgram *shader)
         m_normalBuffer->bind();
 
         // get the in_normal bind index from shader and enable it
-        int in_normal = shader->attributeLocation("in_normal");
+        int in_normal = shader->attributeLocation("mNormal");
         shader->enableAttributeArray(in_normal);
 
         // tell opengl how to use the normalBuffer structure

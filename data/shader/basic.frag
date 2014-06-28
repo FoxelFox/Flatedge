@@ -1,3 +1,9 @@
+#version 440
+
+layout(location = 0) in vec4 vColor;
+
+layout(location = 0) out vec4 pColor;
+
 void main(void) {
-    gl_FragColor = vec4(1.0);
+    pColor = vColor;
 }
