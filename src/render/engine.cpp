@@ -6,7 +6,6 @@
 Engine::Engine(QObject *parent)
 {
     m_parent = parent;
-    initializeOpenGLFunctions();
     m_factory = new Factory(this);
     m_scenes.append(new Scene(m_factory));
 

@@ -3,7 +3,6 @@
 
 #include <QMap>
 #include <QList>
-#include <QOpenGLFunctions_4_3_Core>
 
 #include "src/render/object/factory.h"
 #include "src/render/scene.h"
@@ -12,7 +11,7 @@ class QOpenGLShaderProgram;
 class QObject;
 
 
-class Engine : protected QOpenGLFunctions_4_3_Core
+class Engine
 {
 public:
     Engine(QObject *parent);

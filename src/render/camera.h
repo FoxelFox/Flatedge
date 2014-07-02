@@ -3,9 +3,7 @@
 
 #include <QMatrix4x4>
 
-#include <QOpenGLFunctions_4_3_Core>
-
-class Camera : protected QOpenGLFunctions_4_3_Core
+class Camera
 {
 public:
     Camera();
