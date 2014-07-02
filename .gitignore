@@ -23,3 +23,6 @@
 # QtCreator
 *.pro.user
 *.autosave
+
+# gedit backups
+*.*~
