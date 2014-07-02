@@ -17,11 +17,15 @@ signals:
 public slots:
     void draw();
     void init();
+    void emitReDraw(); // dirty redraw hack
 
 private slots:
     void windowChanged(QQuickWindow *win);
 
 private:
+
+
+    QQuickWindow *m_window;
     QOpenGLContext *m_qmlContext;
     Engine *m_engine;
 };

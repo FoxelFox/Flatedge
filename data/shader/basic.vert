@@ -7,6 +7,9 @@ layout(location = 2) in vec4 mNormal;
 uniform vec4 uColor;
 uniform vec4 uMat;
 
+uniform mat4 uProj;
+uniform mat4 uView;
+
 layout(location = 0) out vec4 vColor;
 
 layout(std140) uniform GlobalMatrices
@@ -17,6 +20,6 @@ layout(std140) uniform GlobalMatrices
 
 void main(void)
 {
-    gl_Position = mPosition;
+    gl_Position = uView * mPosition;
     vColor = uColor;
 }

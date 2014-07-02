@@ -7,4 +7,5 @@ Window {
     height: 720
 
     DevConsole{}
+
 }

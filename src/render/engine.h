@@ -5,10 +5,10 @@
 #include <QList>
 
 #include "src/render/object/factory.h"
-#include "src/render/scene.h"
 
 class QOpenGLShaderProgram;
 class QObject;
+class Scene;
 
 
 class Engine

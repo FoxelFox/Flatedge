@@ -2,12 +2,13 @@
 #include <QOpenGLShaderProgram>
 
 #include <src/gui/console.h>
+#include <src/render/scene.h>
 
 Engine::Engine(QObject *parent)
 {
     m_parent = parent;
     m_factory = new Factory(this);
-    m_scenes.append(new Scene(m_factory));
+    m_scenes.append(new Scene(this, m_factory));
 
     sCheckError();
 }

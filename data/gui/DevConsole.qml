@@ -16,6 +16,7 @@ Console {
             Keys.onEnterPressed:  {
                 dev_console.addLinetoLog(dev_textfield.text)
             }
+
         }
     }
 }

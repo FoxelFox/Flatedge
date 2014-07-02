@@ -19,6 +19,10 @@ void Window::draw()
     m_engine->Draw();
 }
 
+void Window::emitReDraw() {
+    m_window->update();
+}
+
 void Window::init()
 {
     m_qmlContext = window()->openglContext();
@@ -27,12 +31,15 @@ void Window::init()
 
 void Window::windowChanged(QQuickWindow* window)
 {
+    m_window = window;
     // Window should now created
     if(window) {
         connect(window, SIGNAL(beforeRendering()), this, SLOT(draw()), Qt::DirectConnection);
         connect(window, SIGNAL(sceneGraphInitialized()), this, SLOT(init()), Qt::DirectConnection);
 
         window->setClearBeforeRendering(false);
+
+        connect(window, SIGNAL(afterRendering()), this, SLOT(emitReDraw()), Qt::DirectConnection);
 
     }
 }
