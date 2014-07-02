@@ -23,8 +23,12 @@ void Scene::draw()
 
 void Scene::create()
 {
-    m_drawableList.append(m_factory->GenRectangle(QVector3D(1.0f,1.0f,1.0f), QVector4D(1.0f,1.0f,1.0f,1.0f)));
+    Drawable *drawable = m_factory->GenBlock(QVector3D(1.0f,1.0f,1.0f), QVector4D(1.0f,0.0f,0.25f,1.0f));
 
+    QMatrix4x4 mat;
+    //mat.translate(0,0,-10);
+    drawable->SetTransformMatrix(mat);
+    m_drawableList.append(drawable);
 
     // create the global unifom buffer
     //glGenBuffers(1, &m_ubo);

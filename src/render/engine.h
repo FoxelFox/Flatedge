@@ -21,6 +21,8 @@ public:
 
     QOpenGLShaderProgram *getShader(QString name);
 
+    static void sCheckError();
+
     /**
      * @brief Returns the QML OpenGLContext
      * @return OpenGLContext

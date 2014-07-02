@@ -87,6 +87,7 @@ void Factory::createMeshRectangle()
     m_rectangle = new Mesh();
     m_rectangle->SetVertices(vert,6);
     m_rectangle->SetNormals(normal,6);
+    m_rectangle->BuildVAO(m_engine->getContext(),m_engine->getShader("basic"));
 }
 
 void Factory::createMeshBlock()

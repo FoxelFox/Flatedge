@@ -45,6 +45,7 @@ void Mesh::BuildVAO(QObject *context, QOpenGLShaderProgram *shader)
     }
 
     // setup normal buffer
+
     if(m_normalBuffer != 0) {
 
         // bind the buffer to the active context

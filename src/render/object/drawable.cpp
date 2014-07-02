@@ -60,6 +60,7 @@ void Drawable::draw(QMatrix4x4 &transform)
 
     // calculate and set uniform variable modelMatrix
     m_SceneMatrix = transform * m_transMatrix;
+    m_shader->setUniformValue("uMat", m_SceneMatrix);
 
     // draw myself
     m_mesh->Draw();

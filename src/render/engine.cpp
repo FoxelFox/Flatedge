@@ -9,6 +9,8 @@ Engine::Engine(QObject *parent)
     initializeOpenGLFunctions();
     m_factory = new Factory(this);
     m_scenes.append(new Scene(m_factory));
+
+    sCheckError();
 }
 
 void Engine::Draw()
@@ -45,4 +47,8 @@ QOpenGLShaderProgram *Engine::getShader(QString name)
 QObject *Engine::getContext()
 {
     return m_parent;
+}
+
+void Engine::sCheckError() {
+    // TODO: trace errors
 }
