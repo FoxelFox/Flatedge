@@ -18,6 +18,11 @@ public:
     void Draw();
     void Update();
 
+    /**
+     * @brief Returns the corresponding ShaderProgram to the name.
+     * @param name Shader name
+     * @return corresponding ShaderProgram
+     */
     QOpenGLShaderProgram *getShader(QString name);
 
     static void sCheckError();

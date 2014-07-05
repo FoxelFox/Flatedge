@@ -8,6 +8,8 @@ Engine::Engine(QObject *parent)
 {
     m_parent = parent;
     m_factory = new Factory(this);
+
+    // create the default scene
     m_scenes.append(new Scene(this, m_factory));
 
     sCheckError();
@@ -15,9 +17,11 @@ Engine::Engine(QObject *parent)
 
 void Engine::Draw()
 {
-    glClearColor(0.0,0.75,1.0,0.0);
+    // glear the screen
+    glClearColor(0.1,0.15,0.2,0.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Draw every scene
     foreach (Scene *scene, m_scenes) {
         scene->draw();
     }
