@@ -6,6 +6,10 @@ Window {
     width: 1280
     height: 720
 
-    DevConsole{}
+    DevConsole{
+        anchors.bottom: parent.bottom
+        width: 420
+        height: 280
+    }
 
 }

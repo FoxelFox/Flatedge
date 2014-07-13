@@ -5,18 +5,29 @@ import Flatedge 1.0
 Console {
     id: dev_console
     text: "Flatedge Engine"
-    Column {
-        ScrollView {
-            Text {
-                text: dev_console.text
-            }
-        }
-        TextField {
-            id: dev_textfield
-            Keys.onEnterPressed:  {
-                dev_console.addLinetoLog(dev_textfield.text)
-            }
 
+    Rectangle {
+        anchors.fill: parent
+        color: Qt.rgba(0,0,0,0.4)
+        Column {
+
+            ScrollView {
+                width: dev_console.width
+                height: dev_console.height - dev_textfield.height
+                Text {
+                    text: dev_console.text
+                    color: "white"
+
+                }
+            }
+            TextField {
+                id: dev_textfield
+                width: dev_console.width
+                Keys.onEnterPressed:  {
+                    dev_console.addLinetoLog(dev_textfield.text)
+                }
+
+            }
         }
     }
 }
