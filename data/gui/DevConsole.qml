@@ -17,16 +17,17 @@ Console {
                 Text {
                     text: dev_console.text
                     color: "white"
-
+                    font.family: "Monospace"
+                    font.bold: true
                 }
             }
             TextField {
                 id: dev_textfield
                 width: dev_console.width
-                Keys.onEnterPressed:  {
+
+                Keys.onReturnPressed: {
                     dev_console.addLinetoLog(dev_textfield.text)
                 }
-
             }
         }
     }
