@@ -13,7 +13,6 @@ SOURCES += \
     src/render/object/mesh.cpp \
     src/render/scene.cpp \
     src/render/camera.cpp \
-    src/render/shader/generic.cpp \
     src/render/shader/node.cpp
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -37,5 +36,4 @@ HEADERS += \
     src/render/object/mesh.h \
     src/render/scene.h \
     src/render/camera.h \
-    src/render/shader/generic.h \
     src/render/shader/node.h
