@@ -53,6 +53,11 @@ QObject *Engine::getContext()
     return m_parent;
 }
 
+Factory *Engine::getFactory()
+{
+    return m_factory;
+}
+
 void Engine::sCheckError() {
     // TODO: trace errors
 }

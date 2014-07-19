@@ -28,12 +28,33 @@ namespace Shader {
         texture->allocateStorage();
         m_outputs.append(texture);
 
-        // TODO Reinit Framebuffer or create a new one
+        // now simply create a new RenderTarget and destroy the old one //
+        m_renderTarget->destroy();
+        m_renderTarget = new RenderTarget(m_outputs);
+        m_renderTarget->create();
     }
 
     void Node::RemoveOutputSocket(int index)
     {
 
+    }
+
+    void Node::Compile()
+    {
+        m_shader = new QOpenGLShaderProgram(m_engine->getContext());
+        m_shader->addShaderFromSourceFile(QOpenGLShader::Fragment, m_header + m_code);
+        m_shader->addShaderFromSourceFile(QOpenGLShader::Vertex, QString("todo_shader.vert"));
+        m_shader->link();
+    }
+
+    void Node::Bind()
+    {
+        m_shader->bind();
+    }
+
+    void Node::Release()
+    {
+        m_shader->release();
     }
 
     void Node::generateHeader()

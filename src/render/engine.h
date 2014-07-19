@@ -33,6 +33,11 @@ public:
      */
     QObject *getContext();
 
+    /**
+     * @brief Returns the Factory that build Drawables
+     * @return The Factory
+     */
+    Factory *getFactory();
 
 private:
     Factory *m_factory;

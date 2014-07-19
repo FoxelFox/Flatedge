@@ -25,6 +25,11 @@ namespace Shader {
         void AddOutputSocket();
         void RemoveOutputSocket(int index);
 
+        void Compile();
+        void Bind();
+        void Release();
+
+
     private:
 
         void generateHeader();
