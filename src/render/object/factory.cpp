@@ -7,8 +7,6 @@
 
 #include <QMatrix4x4>
 #include <QOpenGLShaderProgram>
-#include <QVector3D>
-#include <QVector4D>
 #include <QDataStream>
 
 

@@ -3,6 +3,7 @@
 
 #include "src/render/rendertarget.h"
 #include "src/render/engine.h"
+#include "src/render/object/drawable.h"
 
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
@@ -25,24 +26,27 @@ namespace Shader {
         void AddOutputSocket();
         void RemoveOutputSocket(int index);
 
-        void Compile();
         void Bind();
         void Release();
 
+        void SetShader(QOpenGLShaderProgram *shader);
+
+        void Compute();
 
     private:
 
         void generateHeader();
 
+        // static objects
+        static Drawable *sm_screenRectangle;
+
         // own objects
         RenderTarget *m_renderTarget;
-        QOpenGLShaderProgram *m_shader;
         QVector<QOpenGLTexture*> m_outputs;
-        QString m_header;
-        QString m_code;
         QSize m_size;
 
         // reference from other objects
+        QOpenGLShaderProgram *m_shader;
         QVector<QOpenGLTexture*> m_inputs;
         Engine *m_engine;
 

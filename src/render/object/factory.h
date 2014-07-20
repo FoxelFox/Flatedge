@@ -1,10 +1,11 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+#include <QVector3D>
+#include <QVector4D>
+
 class Drawable;
 class QOpenGLShaderProgram;
-class QVector4D;
-class QVector3D;
 class Engine;
 class Mesh;
 
@@ -29,7 +30,8 @@ public:
     /// \param shader Shader to be used when Draw
     /// \return A new Drawable that is a Rectangle
     ///
-    Drawable *GenRectangle(QVector3D size, QVector4D color);
+    Drawable *GenRectangle(QVector3D size = QVector3D(1.0f,1.0f,1.0f),
+                           QVector4D color = QVector4D(1.0f,1.0f,1.0f, 1.0f));
 
     ///
     /// \brief Generate a new Block

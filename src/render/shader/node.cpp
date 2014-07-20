@@ -1,10 +1,16 @@
 #include "node.h"
 
 namespace Shader {
+
+    Drawable *Node::sm_screenRectangle = 0;
+
     Node::Node(Engine *engine)
     {
         m_engine = engine;
         m_size = QSize(512,512);
+        if(sm_screenRectangle == 0) {
+            sm_screenRectangle = m_engine->getFactory()->GenRectangle();
+        }
     }
 
     void Node::AddInputSocket(QOpenGLTexture *input)
@@ -34,17 +40,54 @@ namespace Shader {
         m_renderTarget->create();
     }
 
+    void Node::Compute()
+    {
+        // size of texture inputs
+        const int size = m_inputs.size();
+
+
+        /** PREPARE FOR SHADER COMPUTE */
+
+        // enable shader
+        m_shader->bind();
+
+        // enable rendertarget
+        m_renderTarget->bind();
+
+        // bind the texture inputs
+        for(int i = 0; i < size; ++i) {
+            m_inputs[i]->bind(i);
+        }
+
+
+        /** MAKE THE SHADER COMPUTE */
+
+        // set the rendersize (pixels that are involved)
+        glViewport(-m_size.width() / 2, -m_size.height() / 2,
+                   +m_size.width() / 2, +m_size.height() / 2);
+
+        // Draw a Rectangle to the Framebuffer
+        QMatrix4x4 mat;
+        sm_screenRectangle->draw(mat);
+
+
+        /** CLEANUP USED RECOURCES */
+
+        // release all texture inputs
+        for(int i = 0; i < size; ++i) {
+            m_inputs[i]->release();
+        }
+
+        // disable rendertarget
+        m_renderTarget->release();
+
+        // disable shader
+        m_shader->release();
+    }
+
     void Node::RemoveOutputSocket(int index)
     {
 
-    }
-
-    void Node::Compile()
-    {
-        m_shader = new QOpenGLShaderProgram(m_engine->getContext());
-        m_shader->addShaderFromSourceFile(QOpenGLShader::Fragment, m_header + m_code);
-        m_shader->addShaderFromSourceFile(QOpenGLShader::Vertex, QString("todo_shader.vert"));
-        m_shader->link();
     }
 
     void Node::Bind()
@@ -56,6 +99,12 @@ namespace Shader {
     {
         m_shader->release();
     }
+
+    void Node::SetShader(QOpenGLShaderProgram *shader)
+    {
+        m_shader = shader;
+    }
+
 
     void Node::generateHeader()
     {
