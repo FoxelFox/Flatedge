@@ -8,6 +8,7 @@ namespace Shader {
     {
         m_engine = engine;
         m_size = QSize(512,512);
+        m_renderTarget = 0;
         if(sm_screenRectangle == 0) {
             sm_screenRectangle = m_engine->getFactory()->GenRectangle();
         }
@@ -35,7 +36,8 @@ namespace Shader {
         m_outputs.append(texture);
 
         // now simply create a new RenderTarget and destroy the old one //
-        m_renderTarget->destroy();
+        if(m_renderTarget != 0)
+            m_renderTarget->destroy();
         m_renderTarget = new RenderTarget(m_outputs);
         m_renderTarget->create();
     }

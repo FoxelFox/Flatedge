@@ -6,5 +6,7 @@
     <qresource lang="GLSL" prefix="/shader">
         <file>shader/basic.vert</file>
         <file>shader/basic.frag</file>
+        <file>shader/passthru.frag</file>
+        <file>shader/passthru.vert</file>
     </qresource>
 </RCC>

@@ -15,6 +15,7 @@ void RenderTarget::create() {
 
     bind();
 
+
     GLenum drawbufs = 0;
     // setup framebuffer textures
     for(int i = 0; i < m_textureBuffers.size(); ++i) {
@@ -35,6 +36,7 @@ void RenderTarget::create() {
 
     glDrawBuffer(drawbufs);
     release();
+
 }
 
 void RenderTarget::bind() {
