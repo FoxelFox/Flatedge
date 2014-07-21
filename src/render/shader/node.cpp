@@ -42,22 +42,8 @@ namespace Shader {
 
     void Node::Compute()
     {
-        // size of texture inputs
-        const int size = m_inputs.size();
-
-
-        /** PREPARE FOR SHADER COMPUTE */
-
-        // enable shader
-        m_shader->bind();
-
-        // enable rendertarget
-        m_renderTarget->bind();
-
-        // bind the texture inputs
-        for(int i = 0; i < size; ++i) {
-            m_inputs[i]->bind(i);
-        }
+        // prepare
+        Bind();
 
 
         /** MAKE THE SHADER COMPUTE */
@@ -71,18 +57,8 @@ namespace Shader {
         sm_screenRectangle->draw(mat);
 
 
-        /** CLEANUP USED RECOURCES */
-
-        // release all texture inputs
-        for(int i = 0; i < size; ++i) {
-            m_inputs[i]->release();
-        }
-
-        // disable rendertarget
-        m_renderTarget->release();
-
-        // disable shader
-        m_shader->release();
+        // cleanup
+        Release();
     }
 
     void Node::RemoveOutputSocket(int index)
@@ -92,11 +68,31 @@ namespace Shader {
 
     void Node::Bind()
     {
+        // enable shader
         m_shader->bind();
+
+        // enable rendertarget
+        m_renderTarget->bind();
+
+        // bind the texture inputs
+        const int size = m_inputs.size();
+        for(int i = 0; i < size; ++i) {
+            m_inputs[i]->bind(i);
+        }
     }
 
     void Node::Release()
     {
+        // release all texture inputs
+        const int size = m_inputs.size();
+        for(int i = 0; i < size; ++i) {
+            m_inputs[i]->release();
+        }
+
+        // disable rendertarget
+        m_renderTarget->release();
+
+        // disable shader
         m_shader->release();
     }
 

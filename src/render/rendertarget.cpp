@@ -13,8 +13,6 @@ void RenderTarget::create() {
 
     glGenFramebuffers(1, &m_frameBuffer);
 
-    m_textureBuffers[0]->
-
     bind();
 
     GLenum drawbufs = 0;

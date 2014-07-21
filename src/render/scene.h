@@ -8,6 +8,7 @@
 #include "src/render/object/drawable.h"
 #include "src/render/object/factory.h"
 #include "src/render/camera.h"
+#include "src/render/shader/node.h"
 
 class Scene : QOpenGLFunctions
 {
@@ -25,6 +26,7 @@ private:
     GLuint m_ubo;
     QList<Drawable*> m_drawableList;
     QList<Camera*> m_cameraList;
+    Shader::Node *m_nodeRoot;
 };
 
 #endif // SCENE_H
