@@ -7,12 +7,16 @@ Scene::Scene(Engine *engine, Factory *factory)
     m_engine = engine;
     m_factory = factory;
     m_cameraList.append(new Camera(QSize(1280,720)));
-    m_nodeRoot = new Shader::Node(engine);
+    m_rootNode = new Shader::Node(engine); // TODO: Set the shader
     create();
 }
 
 void Scene::draw()
 {
+    // Bind root node
+    m_rootNode->Bind();
+
+    // all draw calls are going into the rootNode
     QMatrix4x4 trans;
     foreach (Camera *cam, m_cameraList) {
         cam->update();
@@ -21,6 +25,10 @@ void Scene::draw()
             item->draw(trans);
         }
     }
+
+    m_rootNode->Release();
+
+    // TODO: go deeper in node system
 }
 
 void Scene::create()

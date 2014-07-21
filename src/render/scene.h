@@ -26,7 +26,7 @@ private:
     GLuint m_ubo;
     QList<Drawable*> m_drawableList;
     QList<Camera*> m_cameraList;
-    Shader::Node *m_nodeRoot;
+    Shader::Node *m_rootNode;
 };
 
 #endif // SCENE_H
