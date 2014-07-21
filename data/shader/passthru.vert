@@ -11,7 +11,7 @@ uniform mat4 uView;
 
 layout(location = 0) out vec4 vPosition;
 layout(location = 1) out vec4 vColor;
-layout(location = 2) in vec4 vNormal;
+layout(location = 2) out vec4 vNormal;
 
 layout(std140) uniform GlobalMatrices
 {

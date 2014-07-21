@@ -6,6 +6,7 @@ Scene::Scene(Engine *engine, Factory *factory)
 {
     m_engine = engine;
     m_factory = factory;
+
     m_cameraList.append(new Camera(QSize(1280,720)));
     m_rootNode = new Shader::Node(engine);
     m_rootNode->SetShader(m_engine->getShader("passthru"));
@@ -14,6 +15,7 @@ Scene::Scene(Engine *engine, Factory *factory)
     m_rootNode->AddOutputSocket();
     m_rootNode->AddOutputSocket();
     m_rootNode->AddOutputSocket();
+
 
     create();
 }
