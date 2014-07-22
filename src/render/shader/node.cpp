@@ -63,6 +63,11 @@ namespace Shader {
         Release();
     }
 
+    void *Node::GetOutputTexture(int index)
+    {
+        return m_outputs[index];
+    }
+
     void Node::RemoveOutputSocket(int index)
     {
 

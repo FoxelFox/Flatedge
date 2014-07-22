@@ -33,6 +33,8 @@ namespace Shader {
 
         void Compute();
 
+        void *GetOutputTexture(int index);
+
     private:
 
         void generateHeader();
