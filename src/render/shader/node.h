@@ -31,7 +31,16 @@ namespace Shader {
 
         void SetShader(QOpenGLShaderProgram *shader);
 
+        /**
+         * @brief Executes the Shader and writes the output into the Framebuffer.
+         */
         void Compute();
+
+        /**
+         * @brief Draw one output to the screen.
+         * @param index Output index to draw
+         */
+        void DrawOutput(int index);
 
         void *GetOutputTexture(int index);
 

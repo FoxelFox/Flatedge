@@ -8,5 +8,7 @@
         <file>shader/basic.frag</file>
         <file>shader/passthru.frag</file>
         <file>shader/passthru.vert</file>
+        <file>shader/uv_texture.frag</file>
+        <file>shader/uv_texture.vert</file>
     </qresource>
 </RCC>

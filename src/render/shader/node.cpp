@@ -63,6 +63,32 @@ namespace Shader {
         Release();
     }
 
+    void Node::DrawOutput(int index)
+    {
+        // activate simple texture draw shader
+        QOpenGLShaderProgram *uv_tex_shader = m_engine->getShader("uv_texture");
+        uv_tex_shader->bind();
+
+
+        // we use texture 0 and binding point 0
+        int point = 0;
+        // activate textue 0 usage
+        glActiveTexture(GL_TEXTURE0 + point);      // TODO: is that realy needed today?!?
+        // bind texture
+        m_outputs[index]->bind();
+        // connect shader texture id with binding point 0
+        uv_tex_shader->setUniformValue("tColor", point);
+
+        // Now draw a simple textured quad to screen
+        // TODO:
+
+
+        // cleanup
+        glActiveTexture(GL_TEXTURE0 + point);
+        glBindTexture(GL_TEXTURE_2D, 0);
+        uv_tex_shader->release();
+    }
+
     void *Node::GetOutputTexture(int index)
     {
         return m_outputs[index];
