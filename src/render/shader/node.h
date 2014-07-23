@@ -3,7 +3,7 @@
 
 #include "src/render/rendertarget.h"
 #include "src/render/engine.h"
-#include "src/render/object/drawable.h"
+#include "src/render/object/mesh.h"
 
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
@@ -30,6 +30,10 @@ namespace Shader {
         void Release();
 
         void SetShader(QOpenGLShaderProgram *shader);
+
+        void StartRecord();
+
+        void StopRecord();
 
         /**
          * @brief Executes the Shader and writes the output into the Framebuffer.

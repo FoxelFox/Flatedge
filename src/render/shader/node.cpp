@@ -1,4 +1,5 @@
 #include "node.h"
+#include "src/render/object/drawable.h"
 
 namespace Shader {
 
@@ -10,7 +11,8 @@ namespace Shader {
         m_size = QSize(512,512);
         m_renderTarget = 0;
         if(sm_screenRectangle == 0) {
-            sm_screenRectangle = m_engine->getFactory()->GenRectangle();
+            sm_screenRectangle = m_engine->getFactory()->GenRectangle(QVector3D(2.0,2.0,2.0));
+            sm_screenRectangle->SetShader(m_engine->getShader("uv_texture"));
         }
     }
 
@@ -80,7 +82,9 @@ namespace Shader {
         uv_tex_shader->setUniformValue("tColor", point);
 
         // Now draw a simple textured quad to screen
-        // TODO:
+        QMatrix4x4 mat;
+        mat.rotate(-90.0f,1.0f,0.0f);
+        sm_screenRectangle->draw(mat);
 
 
         // cleanup
@@ -114,6 +118,8 @@ namespace Shader {
         }
     }
 
+
+
     void Node::Release()
     {
         // release all texture inputs
@@ -132,6 +138,16 @@ namespace Shader {
     void Node::SetShader(QOpenGLShaderProgram *shader)
     {
         m_shader = shader;
+    }
+
+    void Node::StartRecord()
+    {
+        m_renderTarget->bind();
+    }
+
+    void Node::StopRecord()
+    {
+        m_renderTarget->release();
     }
 
 

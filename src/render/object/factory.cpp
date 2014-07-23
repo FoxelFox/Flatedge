@@ -60,6 +60,11 @@ Drawable *Factory::GenSphere(QVector3D size, QVector4D color)
     return 0;
 }
 
+Mesh *Factory::GetRectangleMesh()
+{
+    return m_rectangle;
+}
+
 void Factory::createMeshRectangle()
 {
     QVector3D normal[] = {

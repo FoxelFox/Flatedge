@@ -60,7 +60,8 @@ void Drawable::draw(QMatrix4x4 &transform)
 
     // calculate and set uniform variable modelMatrix
     m_SceneMatrix = transform * m_transMatrix;
-    m_shader->setUniformValue("uMat", m_SceneMatrix);
+    m_shader->setUniformValue("uScen", m_SceneMatrix);
+    m_shader->setUniformValue("uModl", m_modelMatrix);
 
     // draw myself
     m_mesh->Draw();
@@ -85,8 +86,6 @@ void Drawable::Build()
         return;
     }
 
-    // set uniform variable
-    m_shader->setUniformValue("modelMatrix", m_modelMatrix);
     m_mesh->BuildVAO(m_engine->getContext(), m_shader);
 
 }

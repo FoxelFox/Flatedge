@@ -50,6 +50,8 @@ public:
     ///
     Drawable *GenSphere(QVector3D size, QVector4D color);
 
+    Mesh *GetRectangleMesh();
+
 private:
 
     Engine *m_engine;               ///< The RenderEngine Context
