@@ -17,7 +17,7 @@ namespace Shader {
         initializeOpenGLFunctions();
     }
 
-    void Node::AddInputSocket(QOpenGLTexture *input)
+    void Node::AddInputSocket(Texture *input)
     {
         m_inputs.append(input);
         generateHeader();
@@ -31,13 +31,9 @@ namespace Shader {
 
     void Node::AddOutputSocket()
     {
-        QOpenGLTexture *texture = new QOpenGLTexture(QOpenGLTexture::Target2D);
-        texture->create();
-        texture->setSize(m_size.width(), m_size.height());
-        texture->bind();
-        texture->allocateStorage();
-        m_outputs.append(texture);
-
+        Texture *tex = new Texture(m_size.width(), m_size.height());
+        tex->CreateOnGPU();
+        m_outputs.append(tex);
 
         // now simply create a new RenderTarget and destroy the old one //
         if(m_renderTarget != 0)
@@ -73,16 +69,7 @@ namespace Shader {
         QOpenGLShaderProgram *uv_tex_shader = m_engine->getShader("uv_texture");
         uv_tex_shader->bind();
 
-
-        // we use texture 0 and binding point 0
-        int point = 0;
-        // activate textue 0 usage
-        glActiveTexture(GL_TEXTURE0 + point);      // TODO: is that realy needed today?!?
-        // bind texture
-        m_outputs[index]->bind();
-        // connect shader texture id with binding point 0
-        uv_tex_shader->setUniformValue("tColor", point);
-
+        m_outputs[index]->bind(index);
 
         // Now draw a simple textured quad to screen
         QMatrix4x4 mat;
@@ -91,8 +78,7 @@ namespace Shader {
 
 
         // cleanup
-        glActiveTexture(GL_TEXTURE0 + point);
-        glBindTexture(GL_TEXTURE_2D, 0);
+        m_outputs[index]->release();
         uv_tex_shader->release();
     }
 

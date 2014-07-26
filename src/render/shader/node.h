@@ -4,10 +4,10 @@
 #include "src/render/rendertarget.h"
 #include "src/render/engine.h"
 #include "src/render/object/mesh.h"
+#include "src/render/texture.h"
 
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
-#include <QOpenGLTexture>
 #include <QVector>
 #include <QString>
 #include <QSize>
@@ -21,7 +21,7 @@ namespace Shader {
     public:
         Node(Engine *engine);
 
-        void AddInputSocket(QOpenGLTexture* input);
+        void AddInputSocket(Texture *input);
         void RemoveInputSocket(int index);
 
         void AddOutputSocket();
@@ -58,12 +58,12 @@ namespace Shader {
 
         // own objects
         RenderTarget *m_renderTarget;
-        QVector<QOpenGLTexture*> m_outputs;
+        QVector<Texture*> m_outputs;
         QSize m_size;
 
         // reference from other objects
         QOpenGLShaderProgram *m_shader;
-        QVector<QOpenGLTexture*> m_inputs;
+        QVector<Texture*> m_inputs;
         Engine *m_engine;
 
     };
