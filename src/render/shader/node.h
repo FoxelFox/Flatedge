@@ -5,6 +5,7 @@
 #include "src/render/engine.h"
 #include "src/render/object/mesh.h"
 
+#include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLTexture>
 #include <QVector>
@@ -15,7 +16,7 @@
 namespace Shader {
 
 
-    class Node
+    class Node : public QOpenGLFunctions
     {
     public:
         Node(Engine *engine);

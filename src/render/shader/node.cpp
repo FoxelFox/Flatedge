@@ -14,6 +14,7 @@ namespace Shader {
             sm_screenRectangle = m_engine->getFactory()->GenRectangle(QVector3D(2.0,2.0,2.0));
             sm_screenRectangle->SetShader(m_engine->getShader("uv_texture"));
         }
+        initializeOpenGLFunctions();
     }
 
     void Node::AddInputSocket(QOpenGLTexture *input)

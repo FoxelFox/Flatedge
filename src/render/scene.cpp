@@ -23,7 +23,7 @@ Scene::Scene(Engine *engine, Factory *factory)
 void Scene::draw()
 {
     // Bind root node
-    //m_rootNode->StartRecord();
+    m_rootNode->StartRecord();
 
     // all draw calls are going into the rootNode
     QMatrix4x4 trans;
@@ -35,8 +35,8 @@ void Scene::draw()
         }
     }
 
-    //m_rootNode->StopRecord();
-    //m_rootNode->DrawOutput(0);
+    m_rootNode->StopRecord();
+    m_rootNode->DrawOutput(0);
 
     // TODO: make postprocessing
 }

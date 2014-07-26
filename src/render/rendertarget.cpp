@@ -1,6 +1,7 @@
 #include "rendertarget.h"
 
 #include <QOpenGLTexture>
+#include <QVector>
 
 RenderTarget::RenderTarget(QVector<QOpenGLTexture*> textureBuffers)
 {
@@ -17,26 +18,22 @@ void RenderTarget::create() {
 
     bind();
 
-
-    GLenum drawbufs = 0;
     // setup framebuffer textures
     for(int i = 0; i < m_textureBuffers.size(); ++i) {
         if(!m_textureBuffers[i]->isCreated()) {
             m_textureBuffers[i]->create();
         }
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, m_textureBuffers[i]->textureId(),0);
-        drawbufs |= GL_COLOR_ATTACHMENT0 + i;
+        glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, m_textureBuffers[i]->textureId(),0);
+        m_drawbuffs[i] = GL_COLOR_ATTACHMENT0 + i;
     }
 
     // create depth-buffer as render-buffer
     glGenRenderbuffers(1, &m_depthBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_depthBuffer);
-
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT32, m_textureBuffers[0]->width(), m_textureBuffers[0]->height());
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBuffer);
 
-
-    glDrawBuffer(drawbufs);
+    glDrawBuffers(m_textureBuffers.size(), m_drawbuffs);
     release();
 
 }
