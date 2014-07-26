@@ -8,7 +8,7 @@ namespace Shader {
     Node::Node(Engine *engine)
     {
         m_engine = engine;
-        m_size = QSize(512,512);
+        m_size = QSize(1280,720);
         m_renderTarget = 0;
         if(sm_screenRectangle == 0) {
             sm_screenRectangle = m_engine->getFactory()->GenRectangle(QVector3D(2.0,2.0,2.0));
@@ -132,6 +132,7 @@ namespace Shader {
     void Node::StartRecord()
     {
         m_renderTarget->bind();
+        m_renderTarget->clear();
     }
 
     void Node::StopRecord()
