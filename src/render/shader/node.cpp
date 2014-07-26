@@ -32,11 +32,12 @@ namespace Shader {
     void Node::AddOutputSocket()
     {
         QOpenGLTexture *texture = new QOpenGLTexture(QOpenGLTexture::Target2D);
-        texture->setSize(m_size.width(), m_size.height());
         texture->create();
+        texture->setSize(m_size.width(), m_size.height());
         texture->bind();
         texture->allocateStorage();
         m_outputs.append(texture);
+
 
         // now simply create a new RenderTarget and destroy the old one //
         if(m_renderTarget != 0)
@@ -81,6 +82,7 @@ namespace Shader {
         m_outputs[index]->bind();
         // connect shader texture id with binding point 0
         uv_tex_shader->setUniformValue("tColor", point);
+
 
         // Now draw a simple textured quad to screen
         QMatrix4x4 mat;
