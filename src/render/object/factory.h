@@ -57,6 +57,7 @@ private:
     Engine *m_engine;               ///< The RenderEngine Context
     Mesh *m_rectangle;              ///< The Default Rectangle Mesh
     Mesh *m_block;                  ///< The Default Block Mesh
+    Mesh *m_sphere;                 ///< The Default Sphere Mesh
 
     void createMeshRectangle();
     void createMeshBlock();

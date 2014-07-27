@@ -5,11 +5,13 @@ namespace Shader {
 
     Drawable *Node::sm_screenRectangle = 0;
 
-    Node::Node(Engine *engine)
+    Node::Node(Engine *engine, QSize size)
     {
+        m_samples = 2.0f;
         m_engine = engine;
-        m_size = QSize(1280,720);
+        m_size = size;
         m_renderTarget = 0;
+
         if(sm_screenRectangle == 0) {
             sm_screenRectangle = m_engine->getFactory()->GenRectangle(QVector3D(2.0,2.0,2.0));
             sm_screenRectangle->SetShader(m_engine->getShader("uv_texture"));
@@ -31,7 +33,7 @@ namespace Shader {
 
     void Node::AddOutputSocket()
     {
-        Texture *tex = new Texture(m_size.width(), m_size.height());
+        Texture *tex = new Texture((int)(m_size.width() * m_samples), (int)(m_size.height() * m_samples));
         tex->CreateOnGPU();
         m_outputs.append(tex);
 
@@ -50,10 +52,6 @@ namespace Shader {
 
         /** MAKE THE SHADER COMPUTE */
 
-        // set the rendersize (pixels that are involved)
-        glViewport(-m_size.width() / 2, -m_size.height() / 2,
-                   +m_size.width() / 2, +m_size.height() / 2);
-
         // Draw a Rectangle to the Framebuffer
         QMatrix4x4 mat;
         sm_screenRectangle->draw(mat);
@@ -70,6 +68,8 @@ namespace Shader {
         uv_tex_shader->bind();
 
         m_outputs[index]->bind(index);
+
+        glViewport(0, 0, m_size.width(), m_size.height());
 
         // Now draw a simple textured quad to screen
         QMatrix4x4 mat;
@@ -133,11 +133,18 @@ namespace Shader {
     {
         m_renderTarget->bind();
         m_renderTarget->clear();
+        // set the rendersize (pixels that are involved)
+        glViewport(0, 0, m_size.width() * m_samples, +m_size.height() * m_samples);
     }
 
     void Node::StopRecord()
     {
         m_renderTarget->release();
+    }
+
+    void Node::setSamples(float samples)
+    {
+        m_samples = samples;
     }
 
 

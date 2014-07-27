@@ -19,7 +19,7 @@ namespace Shader {
     class Node : public QOpenGLFunctions
     {
     public:
-        Node(Engine *engine);
+        Node(Engine *engine, QSize size);
 
         void AddInputSocket(Texture *input);
         void RemoveInputSocket(int index);
@@ -35,6 +35,8 @@ namespace Shader {
         void StartRecord();
 
         void StopRecord();
+
+        void setSamples(float samples);
 
         /**
          * @brief Executes the Shader and writes the output into the Framebuffer.
@@ -65,6 +67,7 @@ namespace Shader {
         QOpenGLShaderProgram *m_shader;
         QVector<Texture*> m_inputs;
         Engine *m_engine;
+        float m_samples;
 
     };
 }

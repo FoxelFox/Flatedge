@@ -33,7 +33,7 @@ void Camera::setLens(Lens::lens_t lens)
 void Camera::update()
 {
 
-    glViewport(0, 0, m_size.width(), m_size.height());
+    //glViewport(0, 0, m_size.width(), m_size.height());
 
     switch (m_lens) {
     case Lens::Ortho:

@@ -13,8 +13,9 @@
 Factory::Factory(Engine *engine)
 {
     m_engine = engine;
-    m_rectangle = NULL;
-    m_block = NULL;
+    m_rectangle = 0;
+    m_block = 0;
+    m_sphere = 0;
 
     createMeshRectangle();
     createMeshBlock();
@@ -56,8 +57,7 @@ Drawable *Factory::GenBlock(QVector3D size, QVector4D color)
 
 Drawable *Factory::GenSphere(QVector3D size, QVector4D color)
 {
-    // TODO: Create a Sphere Drawable
-    return 0;
+    // TODO:
 }
 
 Mesh *Factory::GetRectangleMesh()
