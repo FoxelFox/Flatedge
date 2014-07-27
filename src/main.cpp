@@ -18,5 +18,7 @@ int main(int argc, char *argv[])
     view.setSource(QUrl("qrc:/gui/gui/main.qml"));
     view.show();
 
+    QObject::connect((QObject*)view.engine(), SIGNAL(quit()), &app, SLOT(quit()));
+
     return app.exec();
 }

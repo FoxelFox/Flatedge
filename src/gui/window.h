@@ -18,6 +18,7 @@ public slots:
     void draw();
     void init();
     void emitReDraw(); // dirty redraw hack
+    void destroy();
 
 private slots:
     void windowChanged(QQuickWindow *win);

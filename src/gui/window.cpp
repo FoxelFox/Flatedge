@@ -23,6 +23,11 @@ void Window::emitReDraw() {
     m_window->update();
 }
 
+void Window::destroy()
+{
+
+}
+
 void Window::init()
 {
     m_qmlContext = window()->openglContext();
@@ -40,6 +45,7 @@ void Window::windowChanged(QQuickWindow* window)
         window->setClearBeforeRendering(false);
 
         connect(window, SIGNAL(afterRendering()), this, SLOT(emitReDraw()), Qt::DirectConnection);
+
 
     }
 }

@@ -10,6 +10,8 @@ Window {
         anchors.bottom: parent.bottom
         width: 420
         height: 280
+
     }
 
+    Keys.onEscapePressed: Qt.quit()
 }
