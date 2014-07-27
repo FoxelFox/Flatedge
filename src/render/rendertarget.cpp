@@ -52,7 +52,7 @@ void RenderTarget::clear() {
 
 void RenderTarget::destroy() {
     for (int i = 0; i < m_textureBuffers.size(); ++i) {
-        //m_textureBuffers[i]->destroy();
+        m_textureBuffers[i]->destroy();
     }
     if (m_frameBuffer != 0)
         glDeleteFramebuffers(1, &m_frameBuffer);

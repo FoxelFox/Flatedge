@@ -35,6 +35,7 @@ void Texture::setupTextureParameter(){
 void Texture::UploadPixel(char* pixels){
     glBindTexture(GL_TEXTURE_2D, handle);
     glTexImage2D(GL_TEXTURE_2D, 0, internalPixelFormat, width, height, 0, pixelFormat, GL_UNSIGNED_BYTE, pixels);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Texture::Resize(unsigned int width, unsigned int height){
@@ -55,6 +56,11 @@ void Texture::bind(unsigned int point){
 void Texture::release(){
     glActiveTexture(bindingPoint);
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Texture::destroy() {
+    release();
+    glDeleteTextures(1, &handle);
 }
 
 unsigned int Texture::GetWidth(){ return width; }

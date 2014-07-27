@@ -26,6 +26,7 @@ public:
     void SetPixelFormat(PixelFormat format, BitDepth depth);
     void SetInternalPixelFormat(PixelFormat format, BitDepth depth);
 
+    void destroy();
 private:
     unsigned int width;
     unsigned int height;
