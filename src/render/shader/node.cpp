@@ -98,7 +98,7 @@ namespace Shader {
         m_shader->bind();
 
         // enable rendertarget
-        m_renderTarget->bind();
+        StartRecord();
 
         // bind the texture inputs
         const int size = m_inputs.size();
@@ -118,7 +118,7 @@ namespace Shader {
         }
 
         // disable rendertarget
-        m_renderTarget->release();
+        StopRecord();
 
         // disable shader
         m_shader->release();
