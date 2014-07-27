@@ -18,6 +18,7 @@ Scene::Scene(Engine *engine, Factory *factory)
 
 void Scene::draw()
 {
+    /** Draw the scene in the first node **/
     // Bind root node
     m_rootNode->StartRecord();
 
@@ -32,9 +33,10 @@ void Scene::draw()
     }
 
     m_rootNode->StopRecord();
-    m_rootNode->DrawOutput(0);
 
+    /** Start the postprocessing with the rendered scene **/
     // TODO: make postprocessing
+    m_rootNode->DrawOutput(0);
 }
 
 void Scene::create()

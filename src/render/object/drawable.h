@@ -38,32 +38,6 @@ public:
     void Build();
 
     ///
-    /// \brief Translate the Modle itself
-    /// \param transform Transformation value
-    ///
-    void TranslateDirect(QVector3D transform);
-
-    ///
-    /// \brief Translate the Drawable relative to his parent
-    /// \param transform Tranformation value
-    ///
-    void TranslateRelative(QVector3D transform);
-
-    ///
-    /// \brief Rotate the Drawable itself
-    /// \param angle rotation angle (deg)
-    /// \param axis rotation axis
-    ///
-    void RotateDirect(int deltax, int deltay);
-
-    ///
-    /// \brief Rotate the Drawable relative to his parent
-    /// \param angle rotation angle (deg)
-    /// \param axis rotation axis
-    ///
-    void RotateRelative(float angle, QVector3D axis);
-
-    ///
     /// \brief Set the Mesh that is used to draw the Drawable
     /// \param mesh The Mesh
     ///
@@ -131,29 +105,12 @@ public:
     ///
     int GetChildCount();
 
-    ///
-    /// \brief GetID returns the unique id
-    /// \return the id
-    ///
-    std::vector<unsigned char> GetID();
-
-    ///
-    /// \brief GetDrawableByID returns the drawable referenced to the ID
-    /// \return the Drawable Pointer
-    ///
-    static Drawable* GetDrawableByID(QVector4D ID);
 
     QMatrix4x4 GetSceneMatrix();
-    void scale(float factor);
-    void forceModification();
+
+
+
 private:
-
-    ///
-    /// \brief Generates a new unique ID
-    /// \return the unique id
-    ///
-    std::vector<unsigned char> makeNewID();
-
 
     Mesh *m_mesh;                               ///< Geometry Mesh
     QVector4D m_color;                          ///< Color for Shader
@@ -163,13 +120,8 @@ private:
 
     QMatrix4x4 m_modelMatrix;                   ///< Self Matrix
     QMatrix4x4 m_transMatrix;                   ///< Transformation to his parent
-    QMatrix4x4 m_manipulateMatrix;              ///Temporary for Object manipulating
     std::vector<Drawable*> m_childList;         ///< List of Childs
 
-    std::vector<unsigned char> m_id;                             ///< unique id
-    static std::vector<unsigned char> s_idCount;                 ///< gloabal count of all Drawables
-    static QMap<std::vector<unsigned char>,Drawable*> s_drawableMap;
-    bool m_isSelected;                            ///< Flag for an Selected Drawable
     QMatrix4x4 m_SceneMatrix;
 };
 
