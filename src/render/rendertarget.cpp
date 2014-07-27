@@ -1,8 +1,9 @@
 #include "rendertarget.h"
+#include "src/render/texture.h"
 
-#include <QOpenGLTexture>
+#include <QVector>
 
-RenderTarget::RenderTarget(QVector<QOpenGLTexture*> textureBuffers)
+RenderTarget::RenderTarget(QVector<Texture*> textureBuffers)
 {
     m_textureBuffers = textureBuffers;
     m_frameBuffer = 0;
@@ -17,26 +18,22 @@ void RenderTarget::create() {
 
     bind();
 
-
-    GLenum drawbufs = 0;
     // setup framebuffer textures
     for(int i = 0; i < m_textureBuffers.size(); ++i) {
-        if(!m_textureBuffers[i]->isCreated()) {
-            m_textureBuffers[i]->create();
-        }
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, m_textureBuffers[i]->textureId(),0);
-        drawbufs |= GL_COLOR_ATTACHMENT0 + i;
+        //if(!m_textureBuffers[i]->isCreated()) {
+        //    m_textureBuffers[i]->create();
+        //}
+        glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, m_textureBuffers[i]->GetHandle(),0);
+        m_drawbuffs[i] = GL_COLOR_ATTACHMENT0 + i;
     }
 
     // create depth-buffer as render-buffer
     glGenRenderbuffers(1, &m_depthBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_depthBuffer);
-
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT32, m_textureBuffers[0]->width(), m_textureBuffers[0]->height());
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT32, m_textureBuffers[0]->GetWidth(), m_textureBuffers[0]->GetHeight());
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBuffer);
 
-
-    glDrawBuffer(drawbufs);
+    glDrawBuffers(m_textureBuffers.size(), m_drawbuffs);
     release();
 
 }
@@ -55,7 +52,7 @@ void RenderTarget::clear() {
 
 void RenderTarget::destroy() {
     for (int i = 0; i < m_textureBuffers.size(); ++i) {
-        m_textureBuffers[i]->destroy();
+        //m_textureBuffers[i]->destroy();
     }
     if (m_frameBuffer != 0)
         glDeleteFramebuffers(1, &m_frameBuffer);

@@ -13,10 +13,6 @@ Scene::Scene(Engine *engine, Factory *factory)
 
     // add 3 output sockets
     m_rootNode->AddOutputSocket();
-    m_rootNode->AddOutputSocket();
-    m_rootNode->AddOutputSocket();
-
-
     create();
 }
 

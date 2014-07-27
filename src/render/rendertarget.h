@@ -2,14 +2,14 @@
 #define TARGET_H
 
 #include <QVector>
-#include <QOpenGLFunctions>
+#include <QOpenGLFunctions_4_3_Core>
 
-class QOpenGLTexture;
+class Texture;
 
-class RenderTarget : protected QOpenGLFunctions
+class RenderTarget : protected QOpenGLFunctions_4_3_Core
 {
 public:
-    RenderTarget(QVector<QOpenGLTexture*> textureBuffers);
+    RenderTarget(QVector<Texture*> textureBuffers);
 
     void bind();
     void release();
@@ -19,7 +19,8 @@ public:
 private:
     GLuint m_frameBuffer;
     GLuint m_depthBuffer;
-    QVector<QOpenGLTexture*> m_textureBuffers;
+    GLenum m_drawbuffs[16];
+    QVector<Texture*> m_textureBuffers;
 
 };
 
