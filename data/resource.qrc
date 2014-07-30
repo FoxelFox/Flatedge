@@ -10,5 +10,8 @@
         <file>shader/passthru.vert</file>
         <file>shader/uv_texture.frag</file>
         <file>shader/uv_texture.vert</file>
+        <file>shader/float/final.frag</file>
+        <file>shader/float/float.frag</file>
+        <file>shader/float/world_generator.frag</file>
     </qresource>
 </RCC>
