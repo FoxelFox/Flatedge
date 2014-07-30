@@ -10,7 +10,7 @@ Scene::Scene(Engine *engine, Factory *factory)
     QSize size = QSize(1280,720);
     m_cameraList.append(new Camera(size));
     m_rootNode = new Shader::Node(engine, size);
-    m_rootNode->SetShader(m_engine->getShader("passthru"));
+    m_rootNode->SetShader(m_engine->getShader("passthru", "passthru"));
 
     // add 3 output sockets
     m_rootNode->AddOutputSocket();
@@ -27,7 +27,7 @@ void Scene::draw()
     QMatrix4x4 trans;
     foreach (Camera *cam, m_cameraList) {
         cam->update();
-        cam->toUniform(m_engine->getShader("basic"));
+        cam->toUniform(m_engine->getShader("basic", "basic"));
         foreach (Drawable *item, m_drawableList) {
             item->draw(trans);
         }

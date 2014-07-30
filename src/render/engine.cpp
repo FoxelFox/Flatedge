@@ -32,18 +32,18 @@ void Engine::Update()
 
 }
 
-QOpenGLShaderProgram *Engine::getShader(QString name)
+QOpenGLShaderProgram *Engine::getShader(QString vert, QString frag)
 {
-    QOpenGLShaderProgram* shader = m_shaders[name];
+    QOpenGLShaderProgram* shader = m_shaders[frag + vert];
 
 
     // if the shader does not exist create a new
     if(!shader) {
         shader = new QOpenGLShaderProgram(m_parent);
-        shader->addShaderFromSourceFile(QOpenGLShader::Fragment, QString(":shader/shader/" + name + ".frag"));
-        shader->addShaderFromSourceFile(QOpenGLShader::Vertex, QString(":shader/shader/" + name + ".vert"));
+        shader->addShaderFromSourceFile(QOpenGLShader::Fragment, QString(":shader/shader/" + frag + ".frag"));
+        shader->addShaderFromSourceFile(QOpenGLShader::Vertex, QString(":shader/shader/" + vert + ".vert"));
         shader->link();
-        m_shaders[name] = shader;
+        m_shaders[frag + vert] = shader;
     }
     return shader;
 }

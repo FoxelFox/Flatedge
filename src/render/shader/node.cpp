@@ -14,7 +14,7 @@ namespace Shader {
 
         if(sm_screenRectangle == 0) {
             sm_screenRectangle = m_engine->getFactory()->GenRectangle(QVector3D(2.0,2.0,2.0));
-            sm_screenRectangle->SetShader(m_engine->getShader("uv_texture"));
+            sm_screenRectangle->SetShader(m_engine->getShader("uv_texture", "uv_texture"));
         }
         initializeOpenGLFunctions();
     }
@@ -64,7 +64,7 @@ namespace Shader {
     void Node::DrawOutput(int index)
     {
         // activate simple texture draw shader
-        QOpenGLShaderProgram *uv_tex_shader = m_engine->getShader("uv_texture");
+        QOpenGLShaderProgram *uv_tex_shader = m_engine->getShader("uv_texture", "uv_texture");
         uv_tex_shader->bind();
 
         m_outputs[index]->bind(index);

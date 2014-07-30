@@ -19,11 +19,12 @@ public:
     void Update();
 
     /**
-     * @brief Returns the corresponding ShaderProgram to the name.
-     * @param name Shader name
+     * @brief Returns a ShaderProgramm with that fragment end vertex shader.
+     * @param frag FragmentShader
+     * @param vert VertexShader
      * @return corresponding ShaderProgram
      */
-    QOpenGLShaderProgram *getShader(QString name);
+    QOpenGLShaderProgram *getShader(QString vert, QString frag);
 
     static void sCheckError();
 

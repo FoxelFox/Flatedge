@@ -32,7 +32,7 @@ Drawable* Factory::GenRectangle(QVector3D size,  QVector4D color) {
     Drawable *rect = new Drawable(m_engine, QMatrix4x4());
     rect->SetMesh(m_rectangle);
     rect->SetModelMatrix(modelMatrix);
-    rect->SetShader(m_engine->getShader("basic"));
+    rect->SetShader(m_engine->getShader("basic", "basic"));
     rect->SetColor(color);
 
     return rect;
@@ -49,7 +49,7 @@ Drawable *Factory::GenBlock(QVector3D size, QVector4D color)
     Drawable *block = new Drawable(m_engine, QMatrix4x4());
     block->SetMesh(m_block);
     block->SetModelMatrix(modelMatrix);
-    block->SetShader(m_engine->getShader("basic"));
+    block->SetShader(m_engine->getShader("basic", "basic"));
     block->SetColor(color);
 
     return block;
@@ -90,7 +90,7 @@ void Factory::createMeshRectangle()
     m_rectangle = new Mesh();
     m_rectangle->SetVertices(vert,6);
     m_rectangle->SetNormals(normal,6);
-    m_rectangle->BuildVAO(m_engine->getContext(),m_engine->getShader("basic"));
+    m_rectangle->BuildVAO(m_engine->getContext(),m_engine->getShader("basic", "basic"));
 }
 
 void Factory::createMeshBlock()
@@ -223,5 +223,5 @@ void Factory::createMeshBlock()
     m_block = new Mesh();
     m_block->SetVertices(vert,36);
     m_block->SetNormals(normal,36);
-    m_block->BuildVAO(m_engine->getContext(),m_engine->getShader("basic"));
+    m_block->BuildVAO(m_engine->getContext(),m_engine->getShader("basic", "basic"));
 }
