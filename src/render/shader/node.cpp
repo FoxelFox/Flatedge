@@ -19,10 +19,15 @@ namespace Shader {
         initializeOpenGLFunctions();
     }
 
-    void Node::AddInputSocket(Texture *input)
+    void Node::connect(Node *node, int socket, int input)
     {
-        m_inputs.append(input);
-        generateHeader();
+        if(input > m_inputs.size()) {
+            // create a new pair
+            m_inputs.append(QPair<Node*,Texture*>(node, node->GetOutputTexture(socket)));
+        } else {
+            // override an existing connection
+            m_inputs[input] = QPair<Node*,Texture*>(node, node->GetOutputTexture(socket));
+        }
     }
 
     void Node::RemoveInputSocket(int index)
@@ -82,7 +87,7 @@ namespace Shader {
         uv_tex_shader->release();
     }
 
-    void *Node::GetOutputTexture(int index)
+    Texture *Node::GetOutputTexture(int index)
     {
         return m_outputs[index];
     }
@@ -103,7 +108,7 @@ namespace Shader {
         // bind the texture inputs
         const int size = m_inputs.size();
         for(int i = 0; i < size; ++i) {
-            m_inputs[i]->bind(i);
+            m_inputs[i].second->bind(i);
         }
     }
 
@@ -114,7 +119,7 @@ namespace Shader {
         // release all texture inputs
         const int size = m_inputs.size();
         for(int i = 0; i < size; ++i) {
-            m_inputs[i]->release();
+            m_inputs[i].second->release();
         }
 
         // disable rendertarget

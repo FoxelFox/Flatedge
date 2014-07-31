@@ -7,6 +7,7 @@
 #include "src/render/texture.h"
 
 #include <QOpenGLFunctions>
+#include <QPair>
 #include <QOpenGLShaderProgram>
 #include <QVector>
 #include <QString>
@@ -21,7 +22,14 @@ namespace Shader {
     public:
         Node(Engine *engine, QSize size);
 
-        void AddInputSocket(Texture *input);
+        /**
+         * @brief connect @socket from @node at @input from this Node
+         * @param node other Node
+         * @param socket Socket from other Node
+         * @param input Socket for this Node
+         */
+        void connect(Node* node, int socket, int input);
+
         void RemoveInputSocket(int index);
 
         void AddOutputSocket();
@@ -49,7 +57,7 @@ namespace Shader {
          */
         void DrawOutput(int index);
 
-        void *GetOutputTexture(int index);
+        Texture *GetOutputTexture(int index);
 
     private:
 
@@ -65,7 +73,7 @@ namespace Shader {
 
         // reference from other objects
         QOpenGLShaderProgram *m_shader;
-        QVector<Texture*> m_inputs;
+        QVector<QPair<Node*, Texture*> > m_inputs;
         Engine *m_engine;
         float m_samples;
 
