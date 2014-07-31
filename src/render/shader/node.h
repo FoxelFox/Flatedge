@@ -49,7 +49,7 @@ namespace Shader {
         /**
          * @brief Executes the Shader and writes the output into the Framebuffer.
          */
-        void Compute();
+        void compute();
 
         /**
          * @brief Draw one output to the screen.

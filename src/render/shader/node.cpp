@@ -49,8 +49,13 @@ namespace Shader {
         m_renderTarget->create();
     }
 
-    void Node::Compute()
+    void Node::compute()
     {
+        // Compute inputs
+        for(int i = 0; i < m_inputs.size(); ++i) {
+            m_inputs[i].first->compute();
+        }
+
         // prepare
         Bind();
 
