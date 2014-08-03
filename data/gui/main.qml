@@ -13,5 +13,7 @@ Window {
 
     }
 
+
+
     Keys.onEscapePressed: Qt.quit()
 }

@@ -2,6 +2,7 @@
     <qresource lang="qml" prefix="/gui">
         <file>gui/main.qml</file>
         <file>gui/DevConsole.qml</file>
+        <file>Node.qml</file>
     </qresource>
     <qresource lang="GLSL" prefix="/shader">
         <file>shader/basic.vert</file>
