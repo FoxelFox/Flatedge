@@ -14,7 +14,8 @@ SOURCES += \
     src/render/scene.cpp \
     src/render/camera.cpp \
     src/render/shader/node.cpp \
-    src/render/texture.cpp
+    src/render/texture.cpp \
+    src/gui/qmlshadernode.cpp
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -38,4 +39,5 @@ HEADERS += \
     src/render/scene.h \
     src/render/camera.h \
     src/render/shader/node.h \
-    src/render/texture.h
+    src/render/texture.h \
+    src/gui/qmlshadernode.h

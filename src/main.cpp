@@ -4,6 +4,7 @@
 
 #include "src/gui/window.h"
 #include "src/gui/console.h"
+#include "src/gui/qmlshadernode.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<Window>("Flatedge", 1, 0, "Window");
     qmlRegisterType<Console>("Flatedge",1,0, "Console");
+    qmlRegisterType<QMLShaderNode>("Flatedge",1,0, "ShaderNode");
 
     QQuickView view;
     view.setResizeMode(QQuickView::SizeRootObjectToView);

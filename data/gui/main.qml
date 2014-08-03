@@ -13,7 +13,9 @@ Window {
 
     }
 
+    Node {
 
+    }
 
     Keys.onEscapePressed: Qt.quit()
 }
