@@ -1,17 +1,15 @@
-#version 430 core
-
 in vec2 ex_uv;
 
-layout(location = 0) out vec4 color;
+out vec4 color;
 
-layout(location = 0) uniform sampler2D tx_float;
-layout(location = 1) uniform sampler2D tx_world;
+uniform sampler2D tx_float;
+uniform sampler2D tx_world;
 
 
 void main(){
-    float world_h = texture(tx_world, ex_uv).a;
-    float float_h = texture(tx_float, ex_uv).a;
-    vec2 velo = texture(tx_float, ex_uv).xy;
+    float world_h = texture2D(tx_world, ex_uv).a;
+    float float_h = texture2D(tx_float, ex_uv).a;
+    vec2 velo = texture2D(tx_float, ex_uv).xy;
 
 
     float x = clamp(float_h - world_h,0.0,1.0);

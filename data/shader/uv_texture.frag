@@ -1,8 +1,6 @@
-#version 440
+in vec2 vUV;
 
-layout(location = 0) in vec2 vUV;
-
-layout(location = 0) out vec4 pColor;
+out vec4 pColor;
 
 uniform sampler2D tColor;
 

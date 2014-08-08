@@ -2,11 +2,11 @@
 #define TARGET_H
 
 #include <QVector>
-#include <QOpenGLFunctions_ES2>
+#include <QOpenGLFunctions>
 
 class Texture;
 
-class RenderTarget : protected QOpenGLFunctions_ES2
+class RenderTarget : protected QOpenGLFunctions
 {
 public:
     RenderTarget(QVector<Texture*> textureBuffers);

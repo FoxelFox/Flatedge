@@ -1,23 +1,15 @@
- #version 440
-
-layout(location = 0) in vec4 mPosition;
-layout(location = 1) in vec4 mColor;
-layout(location = 2) in vec4 mNormal;
+in vec4 mPosition;
+in vec4 mColor;
+in vec4 mNormal;
 
 uniform vec4 uMat;
 
 uniform mat4 uProj;
 uniform mat4 uView;
 
-layout(location = 0) out vec4 vPosition;
-layout(location = 1) out vec4 vColor;
-layout(location = 2) out vec4 vNormal;
-
-layout(std140) uniform GlobalMatrices
-{
-    mat4 mat_view;
-    mat4 mat_proj;
-};
+out vec4 vPosition;
+out vec4 vColor;
+out vec4 vNormal;
 
 void main(void)
 {

@@ -1,11 +1,9 @@
-#version 430 core
-
 in vec2 ex_uv;
 
-layout(location = 0) out vec4 color;
+out vec4 color;
 
-layout(location = 0) uniform sampler2D tx_float;
-layout(location = 1) uniform sampler2D tx_world;
+uniform sampler2D tx_float;
+uniform sampler2D tx_world;
 
 vec4 textureRND2D(vec2 uv){
 	uv = floor(fract(uv)*1e3);

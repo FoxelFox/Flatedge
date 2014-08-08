@@ -1,12 +1,10 @@
-#version 430 core
-
 in vec2 ex_uv;
 
-layout(location = 0) out vec4 color;
+out vec4 color;
 
-layout(location = 0) uniform sampler2D tx_float;
-layout(location = 1) uniform sampler2D tx_world;
-layout(location = 2) uniform vec4 mouse;
+uniform sampler2D tx_float;
+uniform sampler2D tx_world;
+uniform vec4 mouse;
 
 // returns the fluid info
 // vec4 components:

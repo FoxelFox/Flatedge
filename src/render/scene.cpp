@@ -7,13 +7,13 @@ Scene::Scene(Engine *engine, Factory *factory)
     m_engine = engine;
     m_factory = factory;
 
-    QSize size = QSize(1280,720);
+    QSize size = QSize(512,512);
     m_cameraList.append(new Camera(size));
-    m_rootNode = new Shader::Node(engine, size);
-    m_rootNode->SetShader(m_engine->getShader("passthru", "passthru"));
+    //m_rootNode = new Shader::Node(engine, size);
+    //m_rootNode->SetShader(m_engine->getShader("passthru", "passthru"));
 
     // add 3 output sockets
-    m_rootNode->AddOutputSocket();
+    //m_rootNode->AddOutputSocket();
     create();
 }
 
@@ -21,7 +21,7 @@ void Scene::draw()
 {
     /** Draw the scene in the first node **/
     // Bind root node
-    m_rootNode->StartRecord();
+    //m_rootNode->StartRecord();
 
     // all draw calls are going into the rootNode
     QMatrix4x4 trans;
@@ -33,11 +33,11 @@ void Scene::draw()
         }
     }
 
-    m_rootNode->StopRecord();
+    //m_rootNode->StopRecord();
 
     /** Start the postprocessing with the rendered scene **/
     // TODO: make postprocessing
-    m_rootNode->DrawOutput(0);
+    //m_rootNode->DrawOutput(0);
 }
 
 void Scene::create()

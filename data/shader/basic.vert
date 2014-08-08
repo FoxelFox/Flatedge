@@ -1,8 +1,8 @@
-#version 440
+precision mediump float;
 
-layout(location = 0) in vec4 mPosition;
-layout(location = 1) in vec4 mColor;
-layout(location = 2) in vec4 mNormal;
+attribute vec4 mPosition;
+attribute vec4 mColor;
+attribute vec4 mNormal;
 
 uniform vec4 uColor;
 uniform vec4 uMat;
@@ -10,13 +10,7 @@ uniform vec4 uMat;
 uniform mat4 uProj;
 uniform mat4 uView;
 
-layout(location = 0) out vec4 vColor;
-
-layout(std140) uniform GlobalMatrices
-{
-    mat4 mat_view;
-    mat4 mat_proj;
-};
+varying vec4 vColor;
 
 void main(void)
 {
