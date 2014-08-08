@@ -23,17 +23,18 @@ void RenderTarget::create() {
         //if(!m_textureBuffers[i]->isCreated()) {
         //    m_textureBuffers[i]->create();
         //}
-        glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, m_textureBuffers[i]->GetHandle(),0);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, m_textureBuffers[i]->GetHandle(),0);
         m_drawbuffs[i] = GL_COLOR_ATTACHMENT0 + i;
     }
 
     // create depth-buffer as render-buffer
     glGenRenderbuffers(1, &m_depthBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, m_depthBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT32, m_textureBuffers[0]->GetWidth(), m_textureBuffers[0]->GetHeight());
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_textureBuffers[0]->GetWidth(), m_textureBuffers[0]->GetHeight());
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBuffer);
 
-    glDrawBuffers(m_textureBuffers.size(), m_drawbuffs);
+    // TODO: in ES?
+    //glDrawBuffers(m_textureBuffers.size(), m_drawbuffs);
     release();
 
 }

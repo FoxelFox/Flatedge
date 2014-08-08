@@ -5,7 +5,11 @@ Texture::Texture(int width, int height)
     this->width = width;
     this->height = height;
 
+#ifdef GL_ES_VERSION_2_0
+    internalPixelFormat = GL_RGB8_OES;
+#else
     internalPixelFormat = GL_RGB8;
+#endif
     pixelFormat = GL_RGB;
 
     initializeOpenGLFunctions();
@@ -71,26 +75,47 @@ unsigned int convertToGL(PixelFormat format, BitDepth depth){
     switch (format) {
         case RG: {
             switch (depth) {
+#ifdef GL_ES_VERSION_2_0
+                case Depth8: return GL_RG8_EXT; // normalized
+                case Depth16: return GL_RG16F_EXT;
+                case Depth32: return GL_RG32F_EXT;
+                default: return GL_RG8_EXT;
+#else
                 case Depth8: return GL_RG8; // normalized
                 case Depth16: return GL_RG16F;
                 case Depth32: return GL_RG32F;
                 default: return GL_RG;
+#endif
             }
         }
         case RGB: {
             switch (depth) {
+#ifdef GL_ES_VERSION_2_0
+                case Depth8: return GL_RGB8_OES; // normalized
+                case Depth16: return GL_RGB16F_EXT;
+                case Depth32: return GL_RGB32F_EXT;
+                default: return GL_RGB;
+#else
                 case Depth8: return GL_RGB8; // normalized
                 case Depth16: return GL_RGB16F;
                 case Depth32: return GL_RGB32F;
                 default: return GL_RGB;
+#endif
             }
         }
         case RGBA: {
             switch (depth) {
+#ifdef GL_ES_VERSION_2_0
+                case Depth8: return GL_RGBA8_OES; // normalized
+                case Depth16: return GL_RGBA16F_EXT;
+                case Depth32: return GL_RGBA32F_EXT;
+                default: return GL_RGBA;
+#else
                 case Depth8: return GL_RGBA8; // normalized
                 case Depth16: return GL_RGBA16F;
                 case Depth32: return GL_RGBA32F;
                 default: return GL_RGBA;
+#endif
             }
         }
     }
