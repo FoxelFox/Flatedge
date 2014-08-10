@@ -1,10 +1,11 @@
-in vec2 vUV;
+#ifdef GL_ES
+precision highp float;
+#endif
 
-out vec4 pColor;
-
+varying vec2 vUV;
 uniform sampler2D tColor;
 
 void main(void) {
-    pColor = texture2D(tColor, vUV);
-    //pColor = vec4(vUV.x, vUV.y, 0.0, 1.0);
+    gl_FragColor = texture2D(tColor, vUV);
+    gl_FragColor = vec4(vUV.x, vUV.y, 0.0, 1.0);
 }

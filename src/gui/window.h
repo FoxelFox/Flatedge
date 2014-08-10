@@ -19,6 +19,8 @@ public slots:
     void init();
     void emitReDraw(); // dirty redraw hack
     void destroy();
+    void screenChanged(QScreen*screen);
+    void resize();
 
 private slots:
     void windowChanged(QQuickWindow *win);

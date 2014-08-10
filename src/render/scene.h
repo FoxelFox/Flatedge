@@ -17,6 +17,7 @@ public:
 
     void draw();
     void create();
+    void resize(QSize size);
 
 private:
 

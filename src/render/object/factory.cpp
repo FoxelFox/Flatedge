@@ -78,13 +78,13 @@ void Factory::createMeshRectangle()
     };
 
     QVector3D vert[] = {
-        QVector3D(+0.5, +0.0, +0.5),
-        QVector3D(-0.5, -0.0, -0.5),
-        QVector3D(-0.5, +0.0, +0.5),
+        QVector3D(+0.5, +0.5, +0.0),
+        QVector3D(-0.5, -0.5, -0.0),
+        QVector3D(-0.5, +0.5, +0.0),
 
-        QVector3D(+0.5, +0.0, +0.5),
-        QVector3D(+0.5, -0.0, -0.5),
-        QVector3D(-0.5, -0.0, -0.5),
+        QVector3D(+0.5, +0.5, +0.0),
+        QVector3D(+0.5, -0.5, -0.0),
+        QVector3D(-0.5, -0.5, -0.0),
     };
 
     m_rectangle = new Mesh();

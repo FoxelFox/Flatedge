@@ -8,8 +8,8 @@ Window {
 
     DevConsole{
         anchors.bottom: parent.bottom
-        width: 420
-        height: 280
+        width: parent.width / 3
+        height: parent.height / 3
 
     }
 

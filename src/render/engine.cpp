@@ -1,12 +1,14 @@
 #include "engine.h"
 #include <QOpenGLShaderProgram>
+#include <iostream>
 
 #include <src/gui/console.h>
 #include <src/render/scene.h>
 
-Engine::Engine(QObject *parent)
+Engine::Engine(QObject *parent, QSize size)
 {
     m_parent = parent;
+    m_renderSize = size;
     m_factory = new Factory(this);
 
     // create the default scene
@@ -18,18 +20,27 @@ Engine::Engine(QObject *parent)
 void Engine::Draw()
 {
     // glear the screen
-    glClearColor(0.1,0.15,0.2,0.0);
+    glClearColor(0.1,0.15,0.2,1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
 
     // Draw every scene
     foreach (Scene *scene, m_scenes) {
         scene->draw();
     }
+
 }
 
 void Engine::Update()
 {
 
+}
+
+void Engine::resize(QSize size)
+{
+    m_renderSize = size;
 }
 
 QOpenGLShaderProgram *Engine::getShader(QString vert, QString frag)
@@ -56,6 +67,11 @@ QObject *Engine::getContext()
 Factory *Engine::getFactory()
 {
     return m_factory;
+}
+
+QSize Engine::getRenderSize()
+{
+    return m_renderSize;
 }
 
 void Engine::sCheckError() {

@@ -6,6 +6,7 @@ Camera::Camera(QSize size)
 {
     m_lens = Lens::Projection;
     m_view.setToIdentity();
+    m_proj.setToIdentity();
     m_animation = 0.0f;
     setSize(size);
 }
@@ -21,7 +22,6 @@ void Camera::toUniform(QOpenGLShaderProgram *shader)
 void Camera::setSize(QSize size)
 {
     m_size = size;
-    update();
 }
 
 void Camera::setLens(Lens::lens_t lens)
@@ -33,14 +33,14 @@ void Camera::setLens(Lens::lens_t lens)
 void Camera::update()
 {
 
-    //glViewport(0, 0, m_size.width(), m_size.height());
+    glViewport(0, 0, m_size.width(), m_size.height());
 
     switch (m_lens) {
     case Lens::Ortho:
-        m_proj.ortho(-1.0f,1.0f,-1.0f,1.0f, 1.0f, 5000.0f);
+        m_proj.ortho(-1.0f,1.0f,-1.0f,1.0f, 1.0f, 10.0f);
         break;
     case Lens::Projection:
-        m_proj.perspective(90.0f, m_size.width() / m_size.width(), 1.0f, 5000.0f);
+        m_proj.perspective(90.0f, (float)m_size.width () / (float)m_size.height(), 1.0f, 10.0f);
         break;
     default:
         m_proj.setToIdentity();
@@ -48,9 +48,7 @@ void Camera::update()
     }
 
     // TODO: remove this later
-    m_animation += 0.1f;
-    m_view.setToIdentity();
-    m_view.rotate(m_animation, 1.0f,1.0f,1.0f);
+    //m_view.rotate(0.01f, 0.0f,1.0f,1.0f);
 }
 
 

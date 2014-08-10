@@ -19,6 +19,7 @@ Console {
                     color: "white"
                     font.family: "Monospace"
                     font.bold: true
+                    font.pixelSize: dev_console.height / 16
                 }
             }
             TextField {

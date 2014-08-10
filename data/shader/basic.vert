@@ -1,4 +1,7 @@
-precision mediump float;
+#ifdef GL_ES
+precision highp float;
+#endif
+
 
 attribute vec4 mPosition;
 attribute vec4 mColor;
@@ -9,11 +12,13 @@ uniform vec4 uMat;
 
 uniform mat4 uProj;
 uniform mat4 uView;
+uniform mat4 uScen;
+uniform mat4 uModl;
 
 varying vec4 vColor;
 
 void main(void)
 {
-    gl_Position = uView * mPosition;
+    gl_Position =  uProj * uView * mPosition;
     vColor = uColor;
 }

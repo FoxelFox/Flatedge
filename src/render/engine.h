@@ -3,6 +3,7 @@
 
 #include <QMap>
 #include <QList>
+#include <QSize>
 
 #include "src/render/object/factory.h"
 
@@ -14,9 +15,10 @@ class Scene;
 class Engine
 {
 public:
-    Engine(QObject *parent);
+    Engine(QObject *parent, QSize size);
     void Draw();
     void Update();
+    void resize(QSize size);
 
     /**
      * @brief Returns a ShaderProgramm with that fragment end vertex shader.
@@ -40,11 +42,14 @@ public:
      */
     Factory *getFactory();
 
+    QSize getRenderSize();
+
 private:
     Factory *m_factory;
     QList<Scene*> m_scenes;
     QMap<QString, QOpenGLShaderProgram*> m_shaders;
     QObject *m_parent;
+    QSize m_renderSize;
 };
 
 #endif // ENGINE_H

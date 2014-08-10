@@ -83,7 +83,7 @@ namespace Shader {
 
         // Now draw a simple textured quad to screen
         QMatrix4x4 mat;
-        mat.rotate(-90.0f,1.0f,0.0f);
+        mat.translate(0.0f,0.0f,-2.0f);
         sm_screenRectangle->draw(mat);
 
 
