@@ -48,6 +48,7 @@ public:
     ///
     void SetNormals(void *normals, int count);
 
+    void DrawGLES20(QOpenGLShaderProgram *shader);
 private:
 
     QOpenGLVertexArrayObject *m_vao;    ///< Vertex to Shader Group
@@ -63,6 +64,7 @@ private:
     /// \param size  Size in Bytes
     ///
     void writeBuffer(QOpenGLBuffer *buffer, void* data, int size);
+    void setupBuffers(QOpenGLShaderProgram *shader);
 };
 
 #endif // MESH_H

@@ -26,7 +26,46 @@ void Mesh::BuildVAO(QObject *context, QOpenGLShaderProgram *shader)
     m_vao = new QOpenGLVertexArrayObject(context);
     m_vao->create();
     m_vao->bind();
+    setupBuffers(shader);
 
+    // release the VertexArrayObject from active context
+    m_vao->release();
+}
+
+void Mesh::Draw()
+{
+    m_vao->bind();
+    glDrawArrays(GL_TRIANGLES,0,m_vertexCount);
+    m_vao->release();
+}
+
+void Mesh::DrawGLES20(QOpenGLShaderProgram *shader) {
+    setupBuffers(shader);
+    glDrawArrays(GL_TRIANGLES,0,m_vertexCount);
+}
+
+void Mesh::SetVertices(void *vertices, int count)
+{
+    // Create a VertexBuffer if it is the first Time
+    if(m_positionBuffer == 0) {
+        m_positionBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+        m_positionBuffer->create();
+    }
+    writeBuffer(m_positionBuffer, vertices, sizeof(float) * count * 3);
+    m_vertexCount = count;
+}
+
+void Mesh::SetNormals(void *normals, int count)
+{
+    // Create a ColorBuffer if it is the first Time
+    if(m_normalBuffer == 0) {
+        m_normalBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
+        m_normalBuffer->create();
+    }
+    writeBuffer(m_normalBuffer, normals, sizeof(float) * count * 3);
+}
+
+void Mesh::setupBuffers(QOpenGLShaderProgram *shader) {
     // setup position buffer
     if(m_positionBuffer != 0) {
 
@@ -61,37 +100,6 @@ void Mesh::BuildVAO(QObject *context, QOpenGLShaderProgram *shader)
         // release the buffer from active context
         m_normalBuffer->release();
     }
-
-    // release the VertexArrayObject from active context
-    m_vao->release();
-}
-
-void Mesh::Draw()
-{
-    m_vao->bind();
-    glDrawArrays(GL_TRIANGLES,0,m_vertexCount);
-    m_vao->release();
-}
-
-void Mesh::SetVertices(void *vertices, int count)
-{
-    // Create a VertexBuffer if it is the first Time
-    if(m_positionBuffer == 0) {
-        m_positionBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
-        m_positionBuffer->create();
-    }
-    writeBuffer(m_positionBuffer, vertices, sizeof(float) * count * 3);
-    m_vertexCount = count;
-}
-
-void Mesh::SetNormals(void *normals, int count)
-{
-    // Create a ColorBuffer if it is the first Time
-    if(m_normalBuffer == 0) {
-        m_normalBuffer = new QOpenGLBuffer(QOpenGLBuffer::VertexBuffer);
-        m_normalBuffer->create();
-    }
-    writeBuffer(m_normalBuffer, normals, sizeof(float) * count * 3);
 }
 
 void Mesh::writeBuffer(QOpenGLBuffer *buffer, void *data, int size)

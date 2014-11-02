@@ -35,7 +35,9 @@ void Drawable::draw(QMatrix4x4 &transform)
     m_shader->setUniformValue("uModl", m_modelMatrix);
 
     // draw myself
-    m_mesh->Draw();
+    //m_mesh->Draw();
+    m_mesh->DrawGLES20(m_shader);
+
     m_shader->release();
 
     // draw my childs
